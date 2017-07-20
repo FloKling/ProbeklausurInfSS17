@@ -11,6 +11,8 @@ import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -23,13 +25,22 @@ public class BieterTerminal extends JFrame implements Runnable {
     private JLabel timeLabel;
 
     public BieterTerminal(Bieter bieter, Auktionshaus auktionshaus) {
-        auktionshaus.addTerminal(this);
+        auktionshaus.register(this);
         this.bieter = bieter;
         this.auktionshaus = auktionshaus;
         paint(null);
 
         Thread thread = new Thread(this);
         thread.start();
+
+
+        BieterTerminal bt = this;
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                auktionshaus.unregister(bt);
+            }
+        });
     }
 
     @Override
@@ -38,13 +49,10 @@ public class BieterTerminal extends JFrame implements Runnable {
         JPanel masterPanel = new JPanel();
         masterPanel.setLayout(new BorderLayout());
         JPanel panel = new JPanel();
-        JPanel timePanel = new JPanel();
 
-        masterPanel.add(timePanel, BorderLayout.NORTH);
         masterPanel.add(panel, BorderLayout.CENTER);
-        timePanel.setLayout(new GridLayout(1, 1));
         timeLabel = new JLabel(Calendar.getInstance().getTime().toString());
-        timePanel.add(timeLabel);
+        masterPanel.add(timeLabel, BorderLayout.NORTH);
         add(masterPanel);
 
         setTitle(bieter.getFullName());
@@ -73,11 +81,18 @@ public class BieterTerminal extends JFrame implements Runnable {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(700, auktionshaus.getAuktionen().size() * 35 + 50);
         setVisible(true);
-        setResizable(true);
+        setResizable(false);
     }
 
 
     private void addGebot(Auktion auktion, Bieter bieter) {
+        Calendar calendar = GregorianCalendar.getInstance();
+
+        if (calendar.getTime().after(auktion.getZeit().getTime())) {
+            JOptionPane.showMessageDialog(this, "Die Auktion ist leider schon vorbei");
+            return;
+        }
+
         String message = "Bitte neues Gebot eingeben." + System.lineSeparator() + "Mindestens " + auktion.getAktuellerPreis() + " Euro";
         String inputValue = JOptionPane.showInputDialog(this, message, auktion.getAktuellerPreis());
         double gebot = 0.0;
@@ -87,15 +102,7 @@ public class BieterTerminal extends JFrame implements Runnable {
 
         }
 
-        Calendar calendar = GregorianCalendar.getInstance();
-
-        if (calendar.getTime().after(auktion.getZeit().getTime())) {
-            JOptionPane.showMessageDialog(this, "Die Auktion ist leider schon vorbei");
-            return;
-        }
-
         boolean valid = auktion.gebotAbgeben(new Gebot(gebot, bieter));
-        System.out.println(valid);
         if (valid) {
             JOptionPane.showMessageDialog(this, "Sie sind höchstbietender");
         } else {
@@ -114,4 +121,6 @@ public class BieterTerminal extends JFrame implements Runnable {
             timeLabel.setText(Calendar.getInstance().getTime().toString());
         }
     }
+
+
 }

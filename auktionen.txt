@@ -4,3 +4,9 @@
 [Thu Jul 20 10:04:00 CEST 2017] Gebot von Micky Maus für Turnschuhe: 3.0 Euro
 [Thu Jul 20 10:04:02 CEST 2017] Gebot von Micky Maus für Turnschuhe: 2.0 Euro
 [Thu Jul 20 10:04:04 CEST 2017] Gebot von Micky Maus für Turnschuhe: 3.5 Euro
+[Thu Jul 20 10:19:00 CEST 2017] Gebot von Donald Duck für Turnschuhe: 3.0 Euro
+[Thu Jul 20 10:19:03 CEST 2017] Gebot von Micky Maus für Turnschuhe: 3.0 Euro
+[Thu Jul 20 10:19:04 CEST 2017] Gebot von Micky Maus für Turnschuhe: 4.0 Euro
+[Thu Jul 20 10:27:26 CEST 2017] Gebot von Donald Duck für Turnschuhe: 3.0 Euro
+[Thu Jul 20 10:37:57 CEST 2017] Gebot von Donald Duck für Turnschuhe: 3.0 Euro
+[Thu Jul 20 10:38:00 CEST 2017] Gebot von Donald Duck für Turnschuhe: 0.0 Euro

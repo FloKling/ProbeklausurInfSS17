@@ -1,0 +1,6 @@
+[Thu Jul 20 09:49:13 CEST 2017] Gebot vonDonald Duck für Turnschuhe: 2.0
+[Thu Jul 20 09:49:51 CEST 2017] Gebot von Donald Duck für iPad: 4.0 Euro
+[Thu Jul 20 10:03:56 CEST 2017] Gebot von Donald Duck für Turnschuhe: 3.0 Euro
+[Thu Jul 20 10:04:00 CEST 2017] Gebot von Micky Maus für Turnschuhe: 3.0 Euro
+[Thu Jul 20 10:04:02 CEST 2017] Gebot von Micky Maus für Turnschuhe: 2.0 Euro
+[Thu Jul 20 10:04:04 CEST 2017] Gebot von Micky Maus für Turnschuhe: 3.5 Euro
